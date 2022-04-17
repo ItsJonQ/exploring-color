@@ -109,7 +109,7 @@ const SurfaceShadowExample = (props) => (
 const BasicAppExample = () => (
   <Surface contrast="med" className="p-0">
     <div className="flex flex-row items-stretch">
-      <div className="w-56">
+      <div className="w-44">
         <Surface className="p-12 h-full" bordered>
           <h1>Hello</h1>
         </Surface>
@@ -146,7 +146,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <div className="grid grid-cols-2 gap-4 p-4">
+        <div className="grid md:grid-cols-2 gap-4 p-4">
           <Surface className="p-12">
             <Surface elevation={5}>
               <TypographyExample />
