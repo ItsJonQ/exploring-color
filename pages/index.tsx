@@ -1,14 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import cx from 'classnames';
 
 const contrasts = {
-  base: 'bg-white dark:bg-zinc-900',
-  low: 'bg-zinc-50 dark:bg-zinc-800',
-  med: 'bg-zinc-100 dark:bg-zinc-700',
-  medium: 'bg-zinc-100 dark:bg-zinc-600',
-  high: 'bg-zinc-200 dark:bg-zinc-500',
+  min: 'bg-white dark:bg-black',
+  base: 'bg-white dark:bg-zinc-700',
+  low: 'bg-zinc-50 dark:bg-zinc-900',
+  med: 'bg-zinc-100 dark:bg-zinc-800',
+  high: 'bg-zinc-200 dark:bg-zinc-700',
   max: 'bg-black dark:bg-white',
 };
 
@@ -26,6 +25,7 @@ const Surface = ({
   bordered,
   contrast = 'base',
   elevation,
+  rounded,
   ...props
 }: any) => {
   // @ts-ignore
@@ -38,7 +38,7 @@ const Surface = ({
     bg,
     textColor,
     'p-5',
-    'rounded-md',
+    rounded && 'rounded-md',
     bordered && borderClass,
     shadowClass,
     className
@@ -65,7 +65,7 @@ const TypographyExample = () => {
 const Dark = (props) => <div className="dark" {...props} />;
 
 const SurfaceContrastExample = (props) => (
-  <Surface contrast="base" {...props}>
+  <Surface contrast="min" {...props}>
     <Surface contrast="low" {...props}>
       <Surface contrast="med" {...props}>
         <Surface contrast="high" {...props}></Surface>
@@ -88,7 +88,27 @@ const SurfaceShadowExample = (props) => (
   </Surface>
 );
 
-const Wrapper = (props) => <div className="p-2" {...props} />;
+const BasicAppExample = () => (
+  <Surface contrast="med" className="p-0">
+    <div className="flex flex-row items-stretch">
+      <div className="w-56">
+        <Surface className="p-12 h-full" bordered>
+          <h1>Hello</h1>
+        </Surface>
+      </div>
+      <div className="flex-1 p-8">
+        <div className="flex flex-col gap-4">
+          <Surface rounded bordered>
+            Hello
+          </Surface>
+          <Surface rounded bordered>
+            Hello
+          </Surface>
+        </div>
+      </div>
+    </div>
+  </Surface>
+);
 
 const Home: NextPage = () => {
   return (
@@ -100,6 +120,11 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
+        <BasicAppExample />
+        <Dark>
+          <BasicAppExample />
+        </Dark>
+
         <div className="grid grid-cols-2 gap-4 p-4">
           <Surface className="p-12">
             <Surface elevation={5}>
