@@ -62,6 +62,24 @@ const TypographyExample = () => {
   );
 };
 
+const controlClasses = cx(
+  'h-8 rounded border border-zinc-300 dark:border-zinc-500 w-full outline-none focus:border-blue-500 dark:focus:border-blue-500 py-1 p-2 focus:ring-2 focus:ring-blue-400/70',
+  contrasts.base
+);
+
+const Button = (props) => (
+  <button {...props} className={cx(controlClasses, props.className)} />
+);
+const TextInput = (props) => (
+  <input {...props} className={cx(controlClasses, props.className)} />
+);
+const Textarea = (props) => (
+  <textarea
+    {...props}
+    className={cx(controlClasses, 'min-h-[80px]', props.className)}
+  />
+);
+
 const Dark = (props) => <div className="dark" {...props} />;
 
 const SurfaceContrastExample = (props) => (
@@ -110,6 +128,14 @@ const BasicAppExample = () => (
   </Surface>
 );
 
+const ControlExample = () => (
+  <div className="flex flex-col gap-4">
+    <Button>Button</Button>
+    <TextInput />
+    <Textarea />
+  </div>
+);
+
 const Home: NextPage = () => {
   return (
     <div>
@@ -120,11 +146,6 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <BasicAppExample />
-        <Dark>
-          <BasicAppExample />
-        </Dark>
-
         <div className="grid grid-cols-2 gap-4 p-4">
           <Surface className="p-12">
             <Surface elevation={5}>
@@ -133,49 +154,49 @@ const Home: NextPage = () => {
           </Surface>
 
           <Dark>
-            <Surface className="p-12">
+            <Surface className="p-12" contrast="min">
               <Surface elevation={5}>
                 <TypographyExample />
               </Surface>
             </Surface>
           </Dark>
 
-          <Surface className="p-12">
+          <Surface className="p-12" contrast="min">
             <Surface contrast="low" elevation={5}>
               <TypographyExample />
             </Surface>
           </Surface>
 
           <Dark>
-            <Surface className="p-12">
+            <Surface className="p-12" contrast="min">
               <Surface contrast="low" elevation={5}>
                 <TypographyExample />
               </Surface>
             </Surface>
           </Dark>
 
-          <Surface className="p-12">
+          <Surface className="p-12" contrast="min">
             <Surface contrast="med" elevation={5}>
               <TypographyExample />
             </Surface>
           </Surface>
 
           <Dark>
-            <Surface className="p-12">
+            <Surface className="p-12" contrast="min">
               <Surface contrast="med" elevation={5}>
                 <TypographyExample />
               </Surface>
             </Surface>
           </Dark>
 
-          <Surface className="p-12">
+          <Surface className="p-12" contrast="min">
             <Surface contrast="high" elevation={5}>
               <TypographyExample />
             </Surface>
           </Surface>
 
           <Dark>
-            <Surface className="p-12">
+            <Surface className="p-12" contrast="min">
               <Surface contrast="high" elevation={5}>
                 <TypographyExample />
               </Surface>
@@ -202,9 +223,39 @@ const Home: NextPage = () => {
             <SurfaceShadowExample bordered />
           </Dark>
 
+          <SurfaceShadowExample contrast="base" />
+          <Dark>
+            <SurfaceShadowExample contrast="base" />
+          </Dark>
+
+          <SurfaceShadowExample contrast="low" />
+          <Dark>
+            <SurfaceShadowExample contrast="low" />
+          </Dark>
+
           <SurfaceShadowExample contrast="med" />
           <Dark>
             <SurfaceShadowExample contrast="med" />
+          </Dark>
+
+          <SurfaceShadowExample contrast="high" />
+          <Dark>
+            <SurfaceShadowExample contrast="high" />
+          </Dark>
+
+          <BasicAppExample />
+          <Dark>
+            <BasicAppExample />
+          </Dark>
+
+          <Surface contrast="low">
+            <ControlExample />
+          </Surface>
+
+          <Dark>
+            <Surface contrast="low">
+              <ControlExample />
+            </Surface>
           </Dark>
         </div>
       </main>
