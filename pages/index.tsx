@@ -1,51 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import cx from 'classnames';
-
-const contrasts = {
-  min: 'bg-white dark:bg-black',
-  base: 'bg-white dark:bg-zinc-700',
-  low: 'bg-zinc-50 dark:bg-zinc-900',
-  med: 'bg-zinc-100 dark:bg-zinc-800',
-  high: 'bg-zinc-200 dark:bg-zinc-700',
-  max: 'bg-black dark:bg-white',
-};
-
-const elevations = {
-  0: 'shadow-none',
-  1: 'shadow-sm',
-  2: 'shadow-md',
-  3: 'shadow-lg',
-  4: 'shadow-xl',
-  5: 'shadow-2xl',
-};
-
-const Surface = ({
-  className,
-  bordered,
-  contrast = 'base',
-  elevation,
-  rounded,
-  ...props
-}: any) => {
-  // @ts-ignore
-  const bg = contrasts[contrast];
-  const borderClass = 'border border-zinc-300 dark:border-zinc-500';
-  // @ts-ignore
-  const shadowClass = elevations[elevation];
-  const textColor = 'text-zinc-900 dark:text-zinc-50';
-  const classes = cx(
-    bg,
-    textColor,
-    'p-5',
-    rounded && 'rounded-md',
-    bordered && borderClass,
-    shadowClass,
-    className
-  );
-
-  return <div className={classes} {...props} />;
-};
+import { Surface, contrasts } from '../components/Surface';
 
 const TypographyExample = () => {
   return (
@@ -64,7 +20,7 @@ const TypographyExample = () => {
 
 const controlClasses = cx(
   'h-8 rounded border border-zinc-300 dark:border-zinc-500 w-full outline-none focus:border-blue-500 dark:focus:border-blue-500 py-1 p-2 focus:ring-2 focus:ring-blue-400/70',
-  contrasts.base
+  contrasts.min
 );
 
 const Button = (props) => (
